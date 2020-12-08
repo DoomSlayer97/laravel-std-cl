@@ -100,10 +100,25 @@ class ProjectController extends Controller
 
     }
 
-    public function deleteOne(int $id) {
+    public function delete($id) {
 
+        if (!$id) return response([
+            "message"               =>             "id_required"
+        ], 500);
 
+        $project = Project::id($id);
+
+        $project -> isDeleted = false;
+
+        if (!$project -> save()) return response([
+            "message"               =>              "delete_error"
+        ], 500);
+
+        return response([
+            "message"               =>               "deleted"
+        ], 200);
 
     }
+    
 
 }

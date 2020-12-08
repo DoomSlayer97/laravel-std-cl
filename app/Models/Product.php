@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Product extends Model
 {
     use HasFactory;
 
@@ -14,10 +14,6 @@ class Project extends Model
         "description"
     ];
 
-    /* Relations */
-
-    public function user() { return $this -> belongsTo(User::class, "userId"); }
-    public function products() { return $this -> hasMany(Product::class, "projectId"); }
-
+    public function project() { return $this -> belongsTo(Project::class, "projectId"); }
 
 }

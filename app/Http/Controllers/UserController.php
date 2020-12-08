@@ -129,4 +129,26 @@ class UserController extends Controller
 
     }
 
+    public function delete($id) {
+
+        if (!$id) return response([
+            "message"               =>             "id_required"
+        ], 500);
+
+        $user = User::find($id);
+
+        $user -> isDeleted = false;
+
+        if (!$user -> save()) return response([
+            "message"           =>          "delete_error"
+        ], 500);
+
+        return response([
+            "message"               =>              "deleted"
+        ], 200);
+
+    }
+
+    
+
 }
